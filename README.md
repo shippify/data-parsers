@@ -2,6 +2,7 @@
 An agnostic library for the integrations to generate a standard json from a custom company files like *.xml, *.csv, *.xls, *.edi to be used by Shippify internally to interpreting deliveries .
 
 [![NPM Version][npm-image]][npm-url]
+
 [![NPM Downloads][downloads-image]][downloads-url]
   
 Data-parsers - An agnostic library for the Shippify integrations.
