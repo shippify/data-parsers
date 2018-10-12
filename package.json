@@ -1,0 +1,37 @@
+{
+  "name": "shippify-data-parsers",
+  "version": "1.0.0",
+  "description": "An agnostic library to integrations to generate a standard json from a custom company files like *.xml, *.csv, *.xls, *.edi to be used by Shippify internally to interpreting deliveries .",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/test.js",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shippify/data-parsers.git"
+  },
+  "keywords": [
+    "data-parser",
+    "shippify",
+    "integrations"
+  ],
+  "author": "Leonardo Larrea D. <leonardo.larrea1@gmail.com> (http://leonardolarrea.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shippify/data-parsers/issues"
+  },
+  "homepage": "https://github.com/shippify/data-parsers#readme",
+  "devDependencies": {
+    "mocha": "5.2.0",
+    "eslint": "^4.18.2",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "moment": "2.22.2",
+    "schema-inspector": "1.6.8",
+    "xml-js": "1.6.8"
+  }
+}
