@@ -5,7 +5,7 @@ Data-parsers - An agnostic library for the Shippify integrations.
 ============
 This library used templates based on the [JSONPath Syntax](https://github.com/atifaziz/JSONPath) to transform or interpret the data got from the files
 
-####Quick example:
+###Quick example:
 We start with a simple JSON structure built from an XML bill example to generate a delivery JSON:
 
 ``` 
@@ -372,7 +372,7 @@ We start with a simple JSON structure built from an XML bill example to generate
 }
 
 ```
-- ####Template Used
+- ###Template Used
 ```json
 {
     "template": {
@@ -416,7 +416,7 @@ We start with a simple JSON structure built from an XML bill example to generate
 
 ```
 
-####Result:
+###Result:
 ```
 {
   "deliveries": [
