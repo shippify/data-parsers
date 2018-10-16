@@ -3,8 +3,10 @@ A library for the integrations to parser different files like *.xml, *.csv, *.xl
   
 Data-parsers - An agnostic library for the Shippify integrations.
 ============
-This library used templates based on the [JSONPath Syntax](https://github.com/atifaziz/JSONPath)
-We start with a simple JSON structure built after an XML example representing a bill:
+This library used templates based on the [JSONPath Syntax](https://github.com/atifaziz/JSONPath) to transform or interpret the data got from the files
+
+####Quick example:
+We start with a simple JSON structure built from an XML bill example to generate a delivery JSON:
 
 ``` 
 {
@@ -370,7 +372,7 @@ We start with a simple JSON structure built after an XML example representing a 
 }
 
 ```
-- Template
+- ####Template Used
 ```json
 {
     "template": {
@@ -412,5 +414,47 @@ We start with a simple JSON structure built after an XML example representing a 
     }
 }
 
+```
+
+####Result:
+```
+{
+  "deliveries": [
+    {
+      "referenceId": "46943938",
+      "pickup": {
+        "contact": {
+          "name": "EXAMPLE DO BRASIL INDUSTRIA E COMERCIO LTDA",
+          "phone": "5400000000",
+          "email": "example@shippify.co"
+        },
+        "location": {
+          "address": "AV LUIS ARROBAS MARTINS,01  04781000 CAPELA DO SOCORR, Sao Paulo, SP"
+        }
+      },
+      "dropoff": {
+        "contact": {
+          "name": "DO ESTADO DE SAO PAULO",
+          "phone": "1131053490408",
+          "email": {
+            "_text": "ria@example.com"
+          }
+        },
+        "location": {
+          "address": "R BOA VISTA, 200 ANDAR 8, CENTRO, 3550308, Sao Paulo, SP, CEP 01014001 ",
+          "instructions": "AV SAMPAIO VIDAL, 132 - CENTRO - MARILIA-SP - CEP 17500-020 - SUSANE ANGEL"
+        }
+      },
+      "packages": [
+        {
+          "id": "FL3-7878-000",
+          "name": "BASE DE SEPARACAO",
+          "size": 3,
+          "qty": "1.0000"
+        }
+      ]
+    }
+  ]
+}
 ```
 
