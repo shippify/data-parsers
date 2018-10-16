@@ -20,13 +20,15 @@ function validator(json, done){
 }
 
 describe('Parser', function() {
-	describe('Example1[xml]: company id 21 ', function() {
+	describe('Example1[xml]', function() {
 		it('should return true when the json is valid', function(done) {
 			var companyId = 1;
-			var examplePath = path.join(__dirname, '..', 'test-files', 'example1.xml');
-			var fileData = fs.readFileSync(examplePath, 'utf8');
-			var fileExtension = 'xml';
-			parser(companyId, fileData, fileExtension, function(error, deliveriesJson){
+			var examplePath = path.join(__dirname, '..', 'test-files', 'example1', 'example1.xml');
+			var templatePath = path.join(__dirname, '..', 'test-files', 'example1', 'template1.json');
+			var templateAsString = fs.readFileSync(templatePath, 'utf8')
+			var template = JSON.parse(templateAsString);
+
+			parser(examplePath, template, function(error, deliveriesJson){
 				//If exists an error then it is not valid
 				if(error){
 					return done(error);

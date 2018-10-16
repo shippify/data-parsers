@@ -1,7 +1,7 @@
 {
   "name": "shippify-data-parsers",
-  "version": "1.0.0",
-  "description": "An agnostic library to integrations to generate a standard json from a custom company files like *.xml, *.csv, *.xls, *.edi to be used by Shippify internally to interpreting deliveries .",
+  "version": "1.0.2",
+  "description": "An library to extract information from integration files to create deliveries, the files can be *.xml, *.csv, *.xls, *.edi ",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/test.js",
@@ -29,9 +29,12 @@
     "eslint-plugin-import": "^2.9.0"
   },
   "dependencies": {
+    "async": "2.6.1",
     "fs": "0.0.1-security",
+    "json-tots": "1.1.1",
     "moment": "2.22.2",
     "schema-inspector": "1.6.8",
+    "xls-to-json": "0.5.1",
     "xml-js": "1.6.8"
   }
 }
