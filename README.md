@@ -3,7 +3,7 @@ A library for the integrations to parser different files like *.xml, *.csv, *.xl
   
 Data-parsers - An agnostic library for the Shippify integrations.
 ============
-This library used templates based on the JSONPath Syntax
+This library used templates based on the [JSONPath Syntax](https://github.com/atifaziz/JSONPath)
 We start with a simple JSON structure built after an XML example representing a bill:
 
 ``` 
@@ -413,10 +413,4 @@ We start with a simple JSON structure built after an XML example representing a 
 }
 
 ```
-
-
-
-
-[npm-url]: https://www.npmjs.com/package/shippify-data-parsers
-[downloads-url]: https://www.npmjs.com/package/shippify-data-parsers
 
