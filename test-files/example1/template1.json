@@ -1,0 +1,39 @@
+{
+    "template": {
+        "deliveries": [
+            {
+                "referenceId": "{{$.nfeProc.NFe.infNFe.ide.cNF._text}}",
+                "pickup": {
+                    "contact": {
+                        "name" : "{{$.nfeProc.NFe.infNFe.transp.transporta.xNome._text}}",
+                        "phone" : "5400000000",
+                        "email" : "example@shippify.co"
+                    },
+                    "location": {
+                        "address": 	"{{$.nfeProc.NFe.infNFe.transp.transporta.xEnder._text}}, {{$.nfeProc.NFe.infNFe.transp.transporta.xMun._text}}, {{$.nfeProc.NFe.infNFe.transp.transporta.UF._text}}"
+                    }
+                },
+                "dropoff":  {
+    				"contact": {
+                        
+    					"name": "{{$.nfeProc.NFe.infNFe.dest.xNome._text}}",
+    					"phone": "{{$.nfeProc.NFe.infNFe.dest.enderDest.fone._text}}",
+    					"email": "{{$.nfeProc.NFe.infNFe.dest.email}}"
+    				},
+    				"location": {
+    					"address": "{{$.nfeProc.NFe.infNFe.dest.enderDest.xLgr._text}}, {{$.nfeProc.NFe.infNFe.dest.enderDest.nro._text}} {{$.nfeProc.NFe.infNFe.dest.enderDest.xCpl._text}}, {{$.nfeProc.NFe.infNFe.dest.enderDest.xBairro._text}}, {{$.nfeProc.NFe.infNFe.dest.enderDest.cMun._text}}, {{$.nfeProc.NFe.infNFe.dest.enderDest.xMun._text}}, {{$.nfeProc.NFe.infNFe.dest.enderDest.UF._text}}, CEP {{$.nfeProc.NFe.infNFe.dest.enderDest.CEP._text}} ", 
+    					"instructions": "{{$.nfeProc.NFe.infNFe.infAdic.infCpl._text}}"
+    				}
+                },
+                "packages": [
+                    {
+                        "id" : "{{$.nfeProc.NFe.infNFe.det.prod.cProd._text}}",
+                        "name" : "{{$.nfeProc.NFe.infNFe.det.prod.xProd._text}}",
+                        "size" : 3,
+                        "qty" : "{?=default:1{$.nfeProc.NFe.infNFe.det.prod.qCom._text}}"
+                    }
+                ]
+            }
+        ]
+    }
+}
