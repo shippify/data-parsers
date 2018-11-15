@@ -11,7 +11,8 @@
                     },
                     "location": {
                         "address": 	"{{$.nfeProc.NFe.infNFe.transp.transporta.xEnder._text}}, {{$.nfeProc.NFe.infNFe.transp.transporta.xMun._text}}, {{$.nfeProc.NFe.infNFe.transp.transporta.UF._text}}"
-                    }
+                    },
+                    "date": "{{referenceId} | pickupDateFn:America:Sao_Paulo:1:6:__}"
                 },
                 "dropoff":  {
     				"contact": {
