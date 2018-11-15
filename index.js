@@ -4,6 +4,7 @@ const async = require('async');
 const tots = require('json-tots');
 const xml = require('xml-js');
 const xls = require('xls-to-json');
+const moment = require('moment-timezone');
 
 /* 
     This parsing process is after to stablish with the Shippify dev team 
@@ -57,7 +58,10 @@ function parser(filePath, template, cb){
 		},
 		(jsonObject, cb)=>{
 			//The template is configurated by each company. It use the JSONPath Syntax.
-			const documentProcessed = tots.transform(template.template)(jsonObject);
+			const customFns = {
+				functions: { pickupDateFn }
+			}
+			const documentProcessed = tots.transform(template.template, customFns)(jsonObject);
 			console.log('DELIVERIES PROCESSED : ',JSON.stringify(documentProcessed, null, 2));
 			return cb(null, documentProcessed);
 		}	
@@ -68,6 +72,11 @@ function parser(filePath, template, cb){
 		cb(null, dataParsed);
 	});
 }
+
+/* Helper methods */
+const pickupDateFn = (zone, city, days, hour) => {
+	return moment.tz(`${zone}/${city}`).add(days, 'days').hour(hour).minute(0).second(0).millisecond(0).valueOf();
+} 
 
 module.exports = parser;
 
