@@ -59,7 +59,7 @@ function parser(filePath, template, cb){
 		(jsonObject, cb)=>{
 			//The template is configurated by each company. It use the JSONPath Syntax.
 			const customFns = {
-				functions: { pickupDateFn }
+				functions: { pickupDateFn , rangeAndMapFn}, args:template.args
 			}
 			const documentProcessed = tots.transform(template.template, customFns)(jsonObject);
 			console.log('DELIVERIES PROCESSED : ',JSON.stringify(documentProcessed, null, 2));
@@ -76,6 +76,19 @@ function parser(filePath, template, cb){
 /* Helper methods */
 const pickupDateFn = (zone, city, days, hour) => {
 	return moment.tz(`${zone}/${city}`).add(days, 'days').hour(hour).minute(0).second(0).millisecond(0).valueOf();
+} 
+
+
+const rangeAndMapFn = (number, compareTable, mapTable, inclusive) => {
+	const weightNumber = Number.parseInt(number);
+  
+	for(i=0;i<compareTable.length;i++){
+	  if((inclusive && weightNumber<=compareTable[i]) || (!inclusive && weightNumber<compareTable[i])){
+		return mapTable[i];
+	  }
+	}
+  
+	  return mapTable[i];
 } 
 
 module.exports = parser;
