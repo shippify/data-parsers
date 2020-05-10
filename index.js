@@ -28,7 +28,7 @@ function parser(filePath, template, cb){
 				try{
 					const fileData = fs.readFileSync(filePath, 'utf8');
 					const document = JSON.parse(fileData);
-					return cb(null, document);
+					return cb(null, document, 'object');
 				}catch(error){
 					return cb(error);
 				}
@@ -37,7 +37,7 @@ function parser(filePath, template, cb){
 					const fileData = fs.readFileSync(filePath, 'utf8');
 					const resultAsString = xml.xml2json(fileData, { compact: true });
 					const document = JSON.parse(resultAsString);
-					return cb(null, document);
+					return cb(null, document, 'object');
 				}catch(error){
 					return cb(error);
 				}
@@ -49,7 +49,7 @@ function parser(filePath, template, cb){
 					if(error) {
 						return cb(error);
 					} 
-					return cb(null, document);
+					return cb(null, document, 'array');
 				});
 				break;
 			default:
@@ -57,7 +57,7 @@ function parser(filePath, template, cb){
 				break;
 			}
 		},
-		(jsonObject, cb)=>{
+		(jsonObject, output, cb)=>{
 			//The template is configurated by each company. It use the JSONPath Syntax.
 			const customFns = {
 				functions: { pickupDateFn , rangeAndMapFn}, args:template.args
@@ -71,7 +71,7 @@ function parser(filePath, template, cb){
 
 			console.log('DELIVERIES PROCESSED : ',JSON.stringify(documentProcessed, null, 2));
 
-			if (documentProcessed.length == 1) {
+			if (output == 'object') {
 				return cb(null, documentProcessed[0]);
 			}
 
