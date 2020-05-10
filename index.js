@@ -45,6 +45,7 @@ function parser(filePath, template, cb){
 			case '.csv':
 				xls({
 					input: filePath,  // input xls
+					output: null
 				}, (error, document)=>{
 					if(error) {
 						return cb(error);
