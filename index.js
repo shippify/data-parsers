@@ -62,8 +62,19 @@ function parser(filePath, template, cb){
 			const customFns = {
 				functions: { pickupDateFn , rangeAndMapFn}, args:template.args
 			}
-			const documentProcessed = tots.transform(template.template, customFns)(jsonObject);
+
+			const jsonArr = !Array.isArray(jsonObject)? [jsonObject] : jsonObject;
+
+			const documentProcessed = jsonArr.map((jsonItem) => {
+				return tots.transform(template.template, customFns)(jsonItem);
+			});
+
 			console.log('DELIVERIES PROCESSED : ',JSON.stringify(documentProcessed, null, 2));
+
+			if (documentProcessed.length == 1) {
+				return cb(null, documentProcessed[0]);
+			}
+
 			return cb(null, documentProcessed);
 		}	
 	], (error, dataParsed)=>{
