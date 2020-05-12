@@ -61,7 +61,7 @@ function parser(filePath, template, cb){
 		(jsonObject, output, cb)=>{
 			//The template is configurated by each company. It use the JSONPath Syntax.
 			const customFns = {
-				functions: { pickupDateFn , rangeAndMapFn}, args:template.args
+				functions: { pickupDateFn , rangeAndMapFn, todayDayMonth, onlyDigits}, args:template.args
 			}
 
 			const jsonArr = !Array.isArray(jsonObject)? [jsonObject] : jsonObject;
@@ -103,6 +103,14 @@ const rangeAndMapFn = (number, compareTable, mapTable, inclusive) => {
   
 	  return mapTable[i];
 } 
+
+const todayDayMonth = (zone, city) => {
+	return moment.tz(`${zone}/${city}`).format('DD/MM');
+} 
+
+const onlyDigits = (phone) => {
+	return phone.replace(/\D/g,'');
+}
 
 module.exports = parser;
 
