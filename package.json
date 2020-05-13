@@ -1,6 +1,6 @@
 {
   "name": "shippify-data-parsers",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An library to extract information from integration files to create deliveries, the files can be *.xml, *.csv, *.xls, *.edi ",
   "main": "index.js",
   "scripts": {
