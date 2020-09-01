@@ -35,7 +35,7 @@
     "json-tots": "1.1.1",
     "moment": "2.22.2",
     "moment-timezone": "^0.5.23",
-    "schema-inspector": "1.6.8",
+    "schema-inspector": "1.7.0",
     "xls-to-json": "0.5.1",
     "xml-js": "1.6.8"
   }
