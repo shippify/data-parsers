@@ -5,6 +5,7 @@ const tots = require('json-tots');
 const xml = require('xml-js');
 const xls = require('xls-to-json');
 const moment = require('moment-timezone');
+const csv = require('csv-parser');
 
 /* 
     This parsing process is after to stablish with the Shippify dev team 
@@ -16,7 +17,8 @@ const moment = require('moment-timezone');
     Contact to Shippify Dev team by email: ''
 */ 
 
-function parser(filePath, template, cb){
+function parser(filePath, template, configArg, cbArg){
+	const [config, cb] = (typeof configArg === 'function')? [ {}, configArg] : [configArg, cbArg];
 
 	async.waterfall([
 		(cb)=>{
@@ -42,16 +44,28 @@ function parser(filePath, template, cb){
 					return cb(error);
 				}
 			case '.xls':
-			case '.csv':
 				xls({
 					input: filePath,  // input xls
 					output: null
 				}, (error, document)=>{
 					if(error) {
 						return cb(error);
-					} 
+					}
+
 					return cb(null, document, 'array');
-				});
+				});	
+			case '.csv':
+				const results = [];
+ 
+				fs.createReadStream(filePath)
+				.pipe(csv({ separator: (config.separator) ? config.separator : ',' }))
+				.on('data', (data) => results.push(data))
+				.on('end', () => {
+					return cb(null, results, 'array');
+				})
+				.on('error', (err) => {
+					return cb(err);
+				})
 				break;
 			default:
 				cb(new Error('This fileExtension is not supported yet'));
